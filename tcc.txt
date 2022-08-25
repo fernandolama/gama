@@ -1,0 +1,2 @@
+git config --local user.email "fernando.lama@luizalabs.com"
+git config --local user.name "Fernando Araujo Del Lama"
