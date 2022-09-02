@@ -1,24 +1,19 @@
-area = float(input("Qual é a area a ser pintada, em m2? "))
-litros = area // 6
+import math
 
+area = float(input("Qual é a area a ser pintada, em m²? "))
+litros = area / 6
+litros_folga = litros + litros*.10
 precoL = 80
 capacidadeL = 18
 
 precoG = 25
 capacidadeG = 3.6
 
-latas = int(litros // capacidadeL)
-totalL = float(latas * precoL)
+latas = int(litros_folga // capacidadeL)
+galoes = (litros_folga - capacidadeL*latas) / capacidadeG
+galoes_arr = math.ceil(galoes)
+total = float(latas*precoL + galoes_arr*precoG)
 
-galoes = int(litros // capacidadeG)
-totalG = float(galoes * precoG)
-
-### Latas e galões
-latas_mistas = int(((litros * 0.10) + litros) / capacidadeL)
-galoes_mistos = int(((litros * 0.10) + litros) / capacidadeG) 
-# totalLG = float()
-
-
-print('Se optar por comprar apenas latas, usará',latas,'e pagará R$',totalL,'.')
-print('Caso opte por comprar apenas galões, usará',galoes,'e pagará R$',totalG,'.')
-#print('Porém, se quiser desperdiçar menos tinta, basta comprar',latas_mistas,'e',galoes_mistos', pagando R$',totalLG,'.')
+print('Se optar por comprar apenas latas, usará',math.ceil(litros/capacidadeL),'e pagará R$',(math.ceil(litros/capacidadeL)*precoL),'.')
+print('Caso opte por comprar apenas galões, usará',math.ceil(litros/capacidadeG),'e pagará R$',(math.ceil(litros/capacidadeG)*precoG),'.')
+print('Porém, se quiser desperdiçar menos tinta, basta comprar',latas,'lata(s) e',galoes_arr,'galão(ões), pagando R$',total,'.')
